@@ -1,25 +1,27 @@
 import WebSocket, {WebSocketServer} from 'ws';
 import { mouse, left, right, up, down } from '@nut-tree/nut-js';
 
+const PORT = process.env.PORT || 8080;
+
 const wss = new WebSocketServer({
-	port: 8080
+	port: PORT
 })
 
 wss.on("connection", (connection) => {
 	console.log(`connection ok`)
 
 	connection.on('message', async (rawMessage) => {
+		const fronMessage = rawMessage.toString()
 		console.log(`received message: ${rawMessage}`)
 		const [command, ...coord] = rawMessage.toString().split(' ')
 		const [commandType, commandDst] = command.split('_')
-		const fronMessage = rawMessage.toString()
 		
-		if(command !== 'mouse_position'){
-			connection.send(fronMessage)
+		if(command !== 'mouse_position' && coord.length !== 0){
+			connection.send(`${command}_${coord}`)
 		}
 		switch(commandType) {
 			case 'prnt':
-				console.log('send command prnt_scrn')
+				connection.send(`${command}`)
 				break
 			case 'mouse':
 				switch(commandDst){
@@ -64,4 +66,4 @@ wss.on("connection", (connection) => {
 	})
 })
 
-console.log('ws started')
+console.log(`WebSocket server started on port ${PORT}`)
