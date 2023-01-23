@@ -50,13 +50,13 @@ wss.on("connection", (connection) => {
 			case 'draw':
 				switch(commandDst) {
 					case 'square':
-						console.log(`send command square with size ${coord}`)
+						console.log(`send command ${commandType} ${commandDst} with size ${coord}`)
 						break
 					case 'rectangle':
-						console.log(`send command rectangle with size x: ${coord[0]} y: ${coord[1]}`)
+						console.log(`send command ${commandType} ${commandDst} with size x: ${coord[0]} y: ${coord[1]}`)
 						break
 					case 'circle':
-						console.log(`send command circle with radius ${coord}`)
+						console.log(`send command ${commandType} ${commandDst} with radius ${coord}`)
 				}
 		}
 	})
