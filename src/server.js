@@ -1,5 +1,5 @@
 import WebSocket, {WebSocketServer} from 'ws';
-import { mouse, left, right, up, down } from '@nut-tree/nut-js';
+import { mouse, left, right, up, down, screen } from '@nut-tree/nut-js';
 
 const PORT = process.env.PORT || 8080;
 
@@ -63,6 +63,12 @@ wss.on("connection", (connection) => {
 
 	connection.on('close', () => {
 		console.log(`connection closed`)
+	})
+
+	process.on('SIGINT', () => {
+		connection.close(1000, 'user close connection')
+		console.log(`connection closed normally`)
+		process.exit(0)
 	})
 })
 
