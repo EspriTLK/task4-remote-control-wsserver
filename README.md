@@ -1,31 +1,18 @@
-# RSSchool NodeJS websocket task template
-> Static http server and base task packages. 
-> By default WebSocket client tries to connect to the 8080 port.
+# RSSCHOL NodeJS 2022 Q4, WebSocket app remote control
 
 ## Installation
-1. Clone/download repo
-2. `npm install`
+
+1. Clone repo
+2. Install dependencies - `npm i`
 
 ## Usage
-**Development**
+
+**Dev mode**
 
 `npm run start:dev`
 
-* App served @ `http://localhost:8181` with nodemon
+This command runnig nodemon for WebSocket server and node for frontend `http://localhost:8181`
 
-**Production**
+`npm run start:dev`
 
-`npm run start`
-
-* App served @ `http://localhost:8181` without nodemon
-
----
-
-**All commands**
-
-Command | Description
---- | ---
-`npm run start:dev` | App served @ `http://localhost:8181` with nodemon
-`npm run start` | App served @ `http://localhost:8181` without nodemon
-
-**Note**: replace `npm` with `yarn` in `package.json` if you use yarn.
+Run server without nodemon
